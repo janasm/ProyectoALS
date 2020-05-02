@@ -1,5 +1,3 @@
-# coding: utf-8
-
 #!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
@@ -17,9 +15,13 @@
 # limitations under the License.
 #
 
+# coding: utf-8
+
 import webapp2
 from webapp2_extras import jinja2
 from model.usuario import Usuario
+import time
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -27,27 +29,31 @@ class MainHandler(webapp2.RequestHandler):
         }
         jinja = jinja2.get_jinja2(app=self.app)
         self.response.write(
-            jinja.render_template("index.html",
-            **valores_plantilla)
+            jinja.render_template("registro.html",
+                                  **valores_plantilla)
         )
 
     def post(self):
         usuario = self.request.get("usuario")
         password = self.request.get("password")
 
-        if(not(usuario) or not(password)):
-            return self.response.write("Error de autenticacion")
-        else:
+        if((usuario) and (password)):
             try:
                 usuario_pre = Usuario.query(Usuario.nombre == usuario and Usuario.password == password).order(Usuario.nombre)
             except ValueError:
                 usuario_pre = None
 
-            if(not(usuario_pre) or usuario_pre.count() != 1):
-                return self.response.write("El nombre de usuario o la contraseña son incorrectos.")
+            if (usuario_pre and usuario_pre.count() > 0):
+                return self.response.write("Ya existe un usuario con este nombre.")
             else:
-                return self.redirect("/libros/listado")
+                usuario = Usuario(nombre=usuario, password=password)
+                usuario.put()
+                time.sleep(1)
+                return self.redirect("/")
+        else:
+            return ("Error en el registro.")
+
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/registro', MainHandler)
 ], debug=True)

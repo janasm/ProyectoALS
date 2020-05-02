@@ -12,6 +12,9 @@ handlers:
 - url: /
   script: handlers.main.app
 
+- url: /registro
+  script: handlers.registro.app
+
 - url: /libros/nuevo
   script: handlers.libros.nuevo.app
 
@@ -23,6 +26,9 @@ handlers:
 
 - url: /criticas/listado
   script: handlers.criticas.listado.app
+
+- url: /libros/listado
+  script: handlers.libros.listado.app
 
 - url: /criticas/nueva
   script: handlers.criticas.nueva.app

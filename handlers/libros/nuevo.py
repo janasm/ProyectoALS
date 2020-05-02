@@ -32,7 +32,6 @@ class NuevoLibroHandler(webapp2.RequestHandler):
             libro.put()
             time.sleep(1)
             return self.redirect("/")
-        #self.response.write("Creación de libro")
 
 app = webapp2.WSGIApplication([
     ('/libros/nuevo', NuevoLibroHandler)

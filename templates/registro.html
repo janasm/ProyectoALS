@@ -7,17 +7,23 @@
         function validar(){
             const usuario = document.getElementById("usuario")
             const password = document.getElementById("password")
+            const repetir = document.getElementById("repetir")
 
+            if(password.value !== repetir.value){
+                alert("Ambas contraseñas deben ser iguales.")
+            }
             return (password.value.trim().length > 0 &&
+                    repetir.value.trim().length > 0 &&
+                    password.value === repetir.value &&
                     usuario.value.trim().length > 0 )
         }
     </script>
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
-    <form id="formLogIn"
+    <form id="formRegistro"
           method="post"
-          action="/"
+          action="/registro"
           onsubmit="return validar()"
     >
         <p>
@@ -41,8 +47,17 @@
         </p>
         <br/>
         <p>
-            <input type="submit" value="Login">
-            <a href="/registro"> Registrarse </a>
+            <label for="repetir">
+                Repita la contraseña
+            </label>
+            <input type="password"
+                   id="repetir"
+                   name="repetir"
+            />
+        </p>
+        <br/>
+        <p>
+            <input type="submit" value="Registrarse">
         </p>
     </form>
 </body>
