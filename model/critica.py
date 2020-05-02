@@ -6,7 +6,7 @@ from usuario import Usuario
 
 class Critica(ndb.Model):
     libro = ndb.KeyProperty(kind=Libro)
-    #usuario = ndb.KeyProperty(kind=Usuario)
+    usuario = ndb.StringProperty(required=True)
     nota = ndb.IntegerProperty(required=True)
     comentario = ndb.StringProperty(required=True)
     fecha = ndb.DateTimeProperty(auto_now_add=True)
@@ -19,6 +19,10 @@ class Critica(ndb.Model):
             id = ""
 
         return ndb.Key(urlsafe=id).get()
+
+    @staticmethod
+    def recuperaPorLibroYUsuario(libroId, usr):
+        return Critica.query(libroId == Critica.libro and usr == Critica.usuario).order(-Critica.fecha)
 
     @staticmethod
     def recuperaPorLibro(libroId):

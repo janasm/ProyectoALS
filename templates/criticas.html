@@ -5,18 +5,21 @@
     <title>Criticas</title>
 </head>
 <body>
+    <a href="{{url_usr}}">Cerrar sesión</a>
     {% if criticas.count() > 0 %}
         {% for critica in criticas %}
             <p><b>Nota: </b> {{ critica.nota }} </p>
             <p><b>Fecha: </b> {{ critica.fecha }}</p>
             <p><b>Comentario: </b></p>
             <p>{{critica.comentario}}</p>
-            <p>
-                <a href="/criticas/elimina?id={{ critica.key.urlsafe() }}"> Eliminar crítica </a>
-            </p>
-            <p>
-                <a href="/criticas/modifica?id={{ critica.key.urlsafe() }}"> Modificar crítica </a>
-            </p>
+            {% if user == critica.usuario %}
+                <p>
+                    <a href="/criticas/elimina?id={{ critica.key.urlsafe() }}"> Eliminar crítica </a>
+                </p>
+                <p>
+                    <a href="/criticas/modifica?id={{ critica.key.urlsafe() }}"> Modificar crítica </a>
+                </p>
+            {% endif %}
         {% endfor %}
     {% else %}
         <p><b>No hay críticas disponibles para este libro </b></p>

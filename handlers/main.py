@@ -20,33 +20,25 @@
 import webapp2
 from webapp2_extras import jinja2
 from model.usuario import Usuario
+from webapp2_extras.users import users
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        valores_plantilla = {
-        }
-        jinja = jinja2.get_jinja2(app=self.app)
-        self.response.write(
-            jinja.render_template("index.html",
-            **valores_plantilla)
-        )
+        urs = users.get_current_user()
+        if(urs):
+            return self.redirect("/libros/listado")
+        if(not(urs)):
+            url_usr = users.create_login_url("/")
+            valores_plantilla = {
+                "urs": urs,
+                "url_usr": url_usr
+            }
 
-    def post(self):
-        usuario = self.request.get("usuario")
-        password = self.request.get("password")
-
-        if(not(usuario) or not(password)):
-            return self.response.write("Error de autenticacion")
-        else:
-            try:
-                usuario_pre = Usuario.query(Usuario.nombre == usuario and Usuario.password == password).order(Usuario.nombre)
-            except ValueError:
-                usuario_pre = None
-
-            if(not(usuario_pre) or usuario_pre.count() != 1):
-                return self.response.write("El nombre de usuario o la contraseña son incorrectos.")
-            else:
-                return self.redirect("/libros/listado")
+            jinja = jinja2.get_jinja2(app=self.app)
+            self.response.write(
+                jinja.render_template("index.html",
+                                      **valores_plantilla)
+            )
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

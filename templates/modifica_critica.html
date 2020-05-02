@@ -12,6 +12,7 @@
     </script>
 </head>
 <body>
+    <a href="{{url_usr}}">Cerrar sesión</a>
     <h1>Modifica crítica</h1>
     <form id="formModificaCritica"
           method="post"
@@ -25,7 +26,7 @@
             <input type="number"
                    id="nota"
                    name="nota"
-                   value="5"
+                   value="{{critica.nota}}"
                    min="1"
                    max="10"
                    step="1"

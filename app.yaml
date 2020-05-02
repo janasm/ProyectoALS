@@ -12,29 +12,33 @@ handlers:
 - url: /
   script: handlers.main.app
 
-- url: /registro
-  script: handlers.registro.app
-
 - url: /libros/nuevo
   script: handlers.libros.nuevo.app
+  login: required
 
 - url: /libros/elimina
   script: handlers.libros.elimina.app
+  login: required
 
 - url: /criticas/elimina
   script: handlers.criticas.elimina.app
+  login: required
 
 - url: /criticas/listado
   script: handlers.criticas.listado.app
+  login: required
 
 - url: /libros/listado
   script: handlers.libros.listado.app
+  login: required
 
 - url: /criticas/nueva
   script: handlers.criticas.nueva.app
+  login: required
 
 - url: /criticas/modifica
   script: handlers.criticas.modifica.app
+  login: required
 
 libraries:
 - name: webapp2

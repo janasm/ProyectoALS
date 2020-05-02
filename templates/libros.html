@@ -5,9 +5,14 @@
     <title>Libros</title>
 </head>
 <body>
+    <a href="{{url_usr}}">Cerrar sesión</a>
     {% if libros.count() > 0 %}
         {% for libro in libros %}
-            <p><b>Nota media: </b> {{ libro.notaMedia }} </p>
+            {% if libro.notaMedia == None %}
+                <p><b>Nota media: </b> </p>
+            {% else %}
+                <p><b>Nota media: </b> {{ libro.notaMedia }} </p>
+            {% endif %}
             <p><b>Título: </b> {{ libro.titulo }}</p>
             <p><b>Autor: </b> {{ libro.autor }}</p>
             <p><b>Año: </b> {{ libro.anho }}</p>
@@ -15,15 +20,16 @@
             <p>
                 <a href="/criticas/listado?asg={{libro.key.urlsafe()}}"> Ver críticas </a>
             </p>
-            <p>
-                <a href="/libros/elimina?id={{libro.key.urlsafe()}}"> Eliminar libro </a>
-            </p>
+            {% if usr == "admin@example.com" %}
+                <p>
+                    <a href="/libros/elimina?id={{libro.key.urlsafe()}}"> Eliminar libro </a>
+                </p>
+            {% endif %}
         {% endfor %}
     {% else %}
         <p><b>No hay libros registrados.</b></p>
     {% endif %}
 
     <p><a href="/libros/nuevo"> Añadir libro </a></p>
-
 </body>
 </html>
