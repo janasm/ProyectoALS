@@ -26,7 +26,7 @@ class NuevoLibroHandler(webapp2.RequestHandler):
         except ValueError:
             anho = -1
         if (anho < 0 or not(titulo) or not (autor) or not (enlace)) :
-            return self.response.write(str_anho)
+            return self.response.write("Error")
         else:
             libro = Libro(titulo=titulo, autor=autor, anho=anho, enlace=enlace)
             libro.put()

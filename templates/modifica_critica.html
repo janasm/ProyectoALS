@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica crítica</title>
+    <script>
+        function validar(){
+            const comentario = document.getElementById("comentario")
+
+            return (comentario.value.trim().length > 0)
+        }
+    </script>
+</head>
+<body>
+    <h1>Modifica crítica</h1>
+    <form id="formModificaCritica"
+          method="post"
+          action="/criticas/modifica?id={{ critica.key.urlsafe() }}"
+          onsubmit="return validar()"
+    >
+        <p>
+            <label for="nota">
+                Nota
+            </label>
+            <input type="number"
+                   id="nota"
+                   name="nota"
+                   value="5"
+                   min="1"
+                   max="10"
+                   step="1"
+            />
+        </p>
+        <br/>
+        <p>
+            <label for="comentario">
+                Comentario
+            </label>
+            <input type="text"
+                   id="comentario"
+                   name="comentario"
+            />
+        </p>
+        <br/>
+        <p>
+            <input type="submit" value="Publicar">
+        </p>
+    </form>
+
+</body>
+</html>

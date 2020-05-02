@@ -7,14 +7,22 @@
 <body>
     {% if criticas.count() > 0 %}
         {% for critica in criticas %}
-            <b>{{critica.nota}}</b>
-            <b>{{critica.fecha}}</b>
-            <b>{{critica.usuario.nombre}}</b>
-            {{critica.comentario}}
+            <p><b>Nota: </b> {{ critica.nota }} </p>
+            <p><b>Fecha: </b> {{ critica.fecha }}</p>
+            <p><b>Comentario: </b></p>
+            <p>{{critica.comentario}}</p>
+            <p>
+                <a href="/criticas/elimina?id={{ critica.key.urlsafe() }}"> Eliminar crítica </a>
+            </p>
+            <p>
+                <a href="/criticas/modifica?id={{ critica.key.urlsafe() }}"> Modificar crítica </a>
+            </p>
         {% endfor %}
     {% else %}
-    <p><b>No hay críticas disponibles para este libro </b></p>
+        <p><b>No hay críticas disponibles para este libro </b></p>
     {% endif %}
+
+    <p><a href="/criticas/nueva?asg={{ libro.key.urlsafe() }}"> Añadir crítica </a></p>
 
 </body>
 </html>

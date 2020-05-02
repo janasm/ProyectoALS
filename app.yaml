@@ -15,6 +15,21 @@ handlers:
 - url: /libros/nuevo
   script: handlers.libros.nuevo.app
 
+- url: /libros/elimina
+  script: handlers.libros.elimina.app
+
+- url: /criticas/elimina
+  script: handlers.criticas.elimina.app
+
+- url: /criticas/listado
+  script: handlers.criticas.listado.app
+
+- url: /criticas/nueva
+  script: handlers.criticas.nueva.app
+
+- url: /criticas/modifica
+  script: handlers.criticas.modifica.app
+
 libraries:
 - name: webapp2
   version: "2.5.2"

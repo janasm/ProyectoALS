@@ -12,7 +12,12 @@
             <p><b>Autor: </b> {{ libro.autor }}</p>
             <p><b>Año: </b> {{ libro.anho }}</p>
             <p><b>Enlace: </b> {{ libro.enlace }}</p>
-            <a href="/criticas/listado?id{{libro.key.urlsafe()}}"> Críticas </a>
+            <p>
+                <a href="/criticas/listado?asg={{libro.key.urlsafe()}}"> Ver críticas </a>
+            </p>
+            <p>
+                <a href="/libros/elimina?id={{libro.key.urlsafe()}}"> Eliminar libro </a>
+            </p>
         {% endfor %}
     {% else %}
         <p><b>No hay libros registrados.</b></p>
