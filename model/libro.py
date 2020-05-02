@@ -10,3 +10,4 @@ class Libro(ndb.Model):
     titulo = ndb.StringProperty(required=True)
     anho = ndb.IntegerProperty(required=True)
     enlace = ndb.StringProperty(required=True)
+    notaMedia = ndb.FloatProperty()
