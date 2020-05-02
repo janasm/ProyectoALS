@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo libro</title>
+    <script>
+        function validar(){
+            const titulo = document.getElementById("titulo")
+            const autor = document.getElementById("autor")
+            const enlace = document.getElementById("enlace")
+
+            return (titulo.value.trim().length > 0 &&
+                    autor.value.trim().length > 0 &&
+                    enlace.value.trim().length > 0 )
+        }
+    </script>
+</head>
+<body>
+    <h1>Nuevo libro</h1>
+    <form id="formNuevoLibro"
+          method="post"
+          action="/libros/nuevo"
+          onsubmit="return validar()"
+    >
+        <p>
+            <label for="titulo">
+                Título
+            </label>
+            <input type="text"
+                   id="titulo"
+                   name="titulo"
+            />
+        </p>
+        <br/>
+        <p>
+            <label for="autor">
+                Autor
+            </label>
+            <input type="text"
+               id="autor"
+               name="autor"
+            />
+        </p>
+        <br/>
+        <p>
+            <label for="año">
+                Año
+            </label>
+            <input type="number"
+                   id="año"
+                   name="año"
+                   value="2020"
+                   min="0"
+                   step="1"
+            />
+        </p>
+        <br/>
+        <p>
+            <label for="enlace">
+                Enlace
+            </label>
+            <input type="text"
+               id="enlace"
+               name="enlace"
+            />
+        </p>
+        <br/>
+        <p>
+            <input type="submit" value="Añadir">
+        </p>
+    </form>
+
+</body>
+</html>

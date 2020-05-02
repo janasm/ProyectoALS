@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criticas</title>
+</head>
+<body>
+    {% if criticas.count() > 0 %}
+        {% for critica in criticas %}
+            <b>{{critica.nota}}</b>
+            <b>{{critica.fecha}}</b>
+            <b>{{critica.usuario.nombre}}</b>
+            {{critica.comentario}}
+        {% endfor %}
+    {% else %}
+    <p><b>No hay críticas disponibles para este libro </b></p>
+    {% endif %}
+
+</body>
+</html>

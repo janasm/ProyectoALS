@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Libros</title>
+</head>
+<body>
+    {% if libros.count() > 0 %}
+        {% for libro in libros %}
+            <b>Título: </b> {{ libro.titulo }}
+            <b>Autor: </b> {{ libro.autor }}
+            <b>Año: </b> {{ libro.anho }}
+            <b>Enlace: </b> {{ libro.enlace }}
+            <a href="/criticas/listado?id{{libro.key.urlsafe()}}"> Críticas </a>
+        {% endfor %}
+    {% else %}
+        <p><b>No hay libros registrados.</b></p>
+    {% endif %}
+
+    <a href="/libros/nuevo"> Añadir libro </a>
+
+</body>
+</html>
