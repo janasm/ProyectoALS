@@ -7,18 +7,18 @@
 <body>
     {% if libros.count() > 0 %}
         {% for libro in libros %}
-            <b>Nota media: </b> {{ libro.notaMedia }}
-            <b>Título: </b> {{ libro.titulo }}
-            <b>Autor: </b> {{ libro.autor }}
-            <b>Año: </b> {{ libro.anho }}
-            <b>Enlace: </b> {{ libro.enlace }}
+            <p><b>Nota media: </b> {{ libro.notaMedia }} </p>
+            <p><b>Título: </b> {{ libro.titulo }}</p>
+            <p><b>Autor: </b> {{ libro.autor }}</p>
+            <p><b>Año: </b> {{ libro.anho }}</p>
+            <p><b>Enlace: </b> {{ libro.enlace }}</p>
             <a href="/criticas/listado?id{{libro.key.urlsafe()}}"> Críticas </a>
         {% endfor %}
     {% else %}
         <p><b>No hay libros registrados.</b></p>
     {% endif %}
 
-    <a href="/libros/nuevo"> Añadir libro </a>
+    <p><a href="/libros/nuevo"> Añadir libro </a></p>
 
 </body>
 </html>
