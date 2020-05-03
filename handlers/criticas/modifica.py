@@ -34,7 +34,7 @@ class ModificaCriticaHandler(webapp2.RequestHandler):
                 nota = int(str_nota)
             except ValueError:
                 nota = -1
-            if (nota < 0 or not(comentario)) :
+            if nota < 0 :
                 return self.response.write("Error")
             else:
                 critica = Critica.recupera(self.request)

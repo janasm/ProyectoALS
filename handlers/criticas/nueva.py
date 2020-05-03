@@ -34,7 +34,8 @@ class NuevaCriticaHandler(webapp2.RequestHandler):
             comentario = self.request.get("comentario")
             fecha = datetime.datetime.now()
             libro = Libro.recuperaAsg(self.request)
-            usuario= str(usr.email())
+            usuario = str(usr.email())
+            alias = self.request.get("alias")
 
             try:
                 nota = int(str_nota)
@@ -43,7 +44,9 @@ class NuevaCriticaHandler(webapp2.RequestHandler):
             if (nota < 0 or not(comentario) or not(libro)) :
                 return self.response.write("Error")
             else:
-                critica = Critica(libro=libro.key, nota=nota, comentario=comentario, fecha=fecha, usuario=usuario)
+                if(not(alias)):
+                    alias = "Anónimo"
+                critica = Critica(libro=libro.key, nota=nota, comentario=comentario, fecha=fecha, usuario=usuario, alias=alias)
                 critica.put()
                 time.sleep(1)
                 return self.redirect("/criticas/listado?asg=" + libro.key.urlsafe())

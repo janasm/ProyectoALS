@@ -3,33 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Libros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
-    <a href="{{url_usr}}">Cerrar sesión</a>
+<body style = "margin-top : 2%">
+    <div class = "container">
+        <a href="{{url_usr}}" style="float: right; margin-right: 5%">
+            <button class = "button">
+                <i class="glyphicon glyphicon-off" style="font-size:24px"></i> &nbsp Cerrar sesión
+            </button>
+        </a>
+        <p>
+            <a href="/libros/nuevo" style="margin-left: 5%">
+                <button class = "button">
+                    <i class="fa fa-plus" style="font-size:24px"></i> &nbsp Añadir libro
+                </button>
+            </a>
+        </p>
     {% if libros.count() > 0 %}
-        {% for libro in libros %}
-            {% if libro.notaMedia == None %}
-                <p><b>Nota media: </b> </p>
-            {% else %}
-                <p><b>Nota media: </b> {{ libro.notaMedia }} </p>
-            {% endif %}
-            <p><b>Título: </b> {{ libro.titulo }}</p>
-            <p><b>Autor: </b> {{ libro.autor }}</p>
-            <p><b>Año: </b> {{ libro.anho }}</p>
-            <p><b>Enlace: </b> {{ libro.enlace }}</p>
-            <p>
-                <a href="/criticas/listado?asg={{libro.key.urlsafe()}}"> Ver críticas </a>
-            </p>
-            {% if usr == "admin@example.com" %}
-                <p>
-                    <a href="/libros/elimina?id={{libro.key.urlsafe()}}"> Eliminar libro </a>
-                </p>
-            {% endif %}
-        {% endfor %}
+            {% for libro in libros %}
+                <div class = "list-group" style="margin-left: 5%; margin-right: 5%; margin-top: 1%">
+                    <div class="list-group-item">
+                        <table class = "table">
+                            <tbody>
+                                <td style = "width: 50%; border-top: none"><b>Título: </b> &nbsp {{ libro.titulo }}</td>
+                                <td>
+                                    {% if libro.notaMedia == None %}
+                                        <b>Nota media: </b>
+                                    {% else %}
+                                        <b>Nota media: </b> &nbsp {{ libro.notaMedia }}
+                                    {% endif %}
+                                </td>
+                            </tbody>
+                            <tbody>
+                                <td style = "width: 50%"><b>Autor: </b> &nbsp {{ libro.autor }}</td>
+                                <td><b>Año: </b> {{ libro.anho }}</td>
+                            </tbody>
+                            <tbody>
+                                <td><b>Enlace: </b> {{ libro.enlace }}</td>
+                            </tbody>
+                        </table>
+                        <p>
+                            <a href="/criticas/listado?asg={{libro.key.urlsafe()}}">
+                                <button class = "button">
+                                    <i class="fa fa-eye" style="font-size:24px"></i> &nbsp Ver críticas
+                                </button>
+                            </a>
+                        {% if usr == "admin@example.com" %}
+                                <a href="/libros/elimina?id={{libro.key.urlsafe()}}" style="float: right; margin-right: 37%">
+                                    <button class = "button">
+                                        <i class="fa fa-minus" style="font-size:24px"></i> &nbsp Eliminar libro
+                                    </button>
+                                </a>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     {% else %}
-        <p><b>No hay libros registrados.</b></p>
+            <div class = "list-group" style="margin-left: 5%; margin-right: 5%; margin-top: 1%">
+                <div class="list-group-item">
+                    <table class = "table">
+                        <tbody>
+                            <td style = "width: 50%; border-top: none; font-size:18px"><b>No hay libros registrados </b></td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     {% endif %}
-
-    <p><a href="/libros/nuevo"> Añadir libro </a></p>
 </body>
 </html>

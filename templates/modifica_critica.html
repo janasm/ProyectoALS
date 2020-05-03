@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifica crítica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script>
         function validar(){
             const comentario = document.getElementById("comentario")
@@ -11,42 +13,57 @@
         }
     </script>
 </head>
-<body>
-    <a href="{{url_usr}}">Cerrar sesión</a>
-    <h1>Modifica crítica</h1>
-    <form id="formModificaCritica"
-          method="post"
-          action="/criticas/modifica?id={{ critica.key.urlsafe() }}"
-          onsubmit="return validar()"
-    >
+<body style = "margin-top : 2%; display: flow-root">
+    <div class = "container" style="margin-top: 2%">
+        <a href="{{url_usr}}" style="float: right">
+            <button class = "button">
+                <i class="glyphicon glyphicon-off" style="font-size:24px"></i> &nbsp Cerrar sesión
+            </button>
+        </a>
+        <h2>Modifica crítica</h2>
+        <form id="formModificaCritica"
+              method="post"
+              action="/criticas/modifica?id={{ critica.key.urlsafe() }}"
+              onsubmit="return validar()"
+        >
+            <div class = "form-group">
+                <label for="nota">
+                    Nota
+                </label>
+                <input type="number"
+                       id="nota"
+                       name="nota"
+                       value="{{critica.nota}}"
+                       min="1"
+                       max="10"
+                       step="1"
+                       class="form-control"
+                />
+            </div>
+            <br/>
+            <div class = "form-group">
+                <label for="comentario">
+                    Comentario
+                </label>
+                <input type="text"
+                       id="comentario"
+                       name="comentario"
+                       class="form-control"
+                       value="{{critica.comentario}}"
+                />
+            </div>
+            <br/>
+            <p>
+                <input type="submit" class="btn btn-default" value="Publicar">
+            </p>
+        </form>
         <p>
-            <label for="nota">
-                Nota
-            </label>
-            <input type="number"
-                   id="nota"
-                   name="nota"
-                   value="{{critica.nota}}"
-                   min="1"
-                   max="10"
-                   step="1"
-            />
+            <a href="/libros/listado" style="float: right">
+                <button class = "button">
+                    <i class="glyphicon glyphicon-arrow-left" style="font-size:24px"></i> &nbsp Volver al listado de libros
+                </button>
+            </a>
         </p>
-        <br/>
-        <p>
-            <label for="comentario">
-                Comentario
-            </label>
-            <input type="text"
-                   id="comentario"
-                   name="comentario"
-            />
-        </p>
-        <br/>
-        <p>
-            <input type="submit" value="Publicar">
-        </p>
-    </form>
-
+    </div>
 </body>
 </html>

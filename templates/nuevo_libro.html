@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo libro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script>
         function validar(){
             const titulo = document.getElementById("titulo")
@@ -15,61 +17,77 @@
         }
     </script>
 </head>
-<body>
-    <a href="{{url_usr}}">Cerrar sesión</a>
-    <h1>Nuevo libro</h1>
-    <form id="formNuevoLibro"
-          method="post"
-          action="/libros/nuevo"
-          onsubmit="return validar()"
-    >
+<body style = "margin-top : 2%; display: flow-root">
+    <div class = "container" style="margin-top: 2%">
+        <a href="{{url_usr}}" style="float: right">
+            <button class = "button">
+                <i class="glyphicon glyphicon-off" style="font-size:24px"></i> &nbsp Cerrar sesión
+            </button>
+        </a>
+        <h2>Nuevo libro</h2>
+        <form id="formNuevoLibro"
+              method="post"
+              action="/libros/nuevo"
+              onsubmit="return validar()"
+        >
+            <div class = "form-group">
+                <label for="titulo">
+                    Título
+                </label>
+                <input type="text"
+                       id="titulo"
+                       name="titulo"
+                       class="form-control"
+                />
+            </div>
+            <br/>
+            <div class = "form-group">
+                <label for="autor">
+                    Autor
+                </label>
+                <input type="text"
+                   id="autor"
+                   name="autor"
+                   class="form-control"
+                />
+            </div>
+            <br/>
+            <div class = "form-group">
+                <label for="anho">
+                    Año
+                </label>
+                <input type="number"
+                       id="anho"
+                       name="anho"
+                       value="2020"
+                       min="0"
+                       step="1"
+                       class="form-control"
+                />
+            </div>
+            <br/>
+            <div class = "form-group">
+                <label for="enlace">
+                    Enlace
+                </label>
+                <input type="text"
+                       id="enlace"
+                       name="enlace"
+                       class="form-control"
+                />
+            </div>
+            <br/>
+            <p>
+                <input type="submit" class="btn btn-default" value="Publicar">
+            </p>
+        </form>
         <p>
-            <label for="titulo">
-                Título
-            </label>
-            <input type="text"
-                   id="titulo"
-                   name="titulo"
-            />
+            <a href="/libros/listado" style="float: right">
+                <button class = "button">
+                    <i class="glyphicon glyphicon-arrow-left" style="font-size:24px"></i> &nbsp Volver al listado de libros
+                </button>
+            </a>
         </p>
-        <br/>
-        <p>
-            <label for="autor">
-                Autor
-            </label>
-            <input type="text"
-               id="autor"
-               name="autor"
-            />
-        </p>
-        <br/>
-        <p>
-            <label for="anho">
-                Año
-            </label>
-            <input type="number"
-                   id="anho"
-                   name="anho"
-                   value="2020"
-                   min="0"
-                   step="1"
-            />
-        </p>
-        <br/>
-        <p>
-            <label for="enlace">
-                Enlace
-            </label>
-            <input type="text"
-               id="enlace"
-               name="enlace"
-            />
-        </p>
-        <br/>
-        <p>
-            <input type="submit" value="Añadir">
-        </p>
-    </form>
-
+    </div>
 </body>
 </html>

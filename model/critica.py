@@ -10,6 +10,7 @@ class Critica(ndb.Model):
     nota = ndb.IntegerProperty(required=True)
     comentario = ndb.StringProperty(required=True)
     fecha = ndb.DateTimeProperty(auto_now_add=True)
+    alias = ndb.StringProperty()
 
     @staticmethod
     def recupera(request):
