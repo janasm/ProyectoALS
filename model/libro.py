@@ -2,7 +2,6 @@
 #Libro perteneciente a un autor
 
 from google.appengine.ext import ndb
-from autor import Autor
 
 class Libro(ndb.Model):
     autor = ndb.StringProperty(required=True)

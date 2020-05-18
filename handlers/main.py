@@ -19,7 +19,6 @@
 
 import webapp2
 from webapp2_extras import jinja2
-from model.usuario import Usuario
 from webapp2_extras.users import users
 
 class MainHandler(webapp2.RequestHandler):

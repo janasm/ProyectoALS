@@ -1,8 +1,7 @@
-#Critica perteneciente a un libro y publicada por un usuario
+#Critica perteneciente a un libro
 
 from google.appengine.ext import ndb
 from libro import Libro
-from usuario import Usuario
 
 class Critica(ndb.Model):
     libro = ndb.KeyProperty(kind=Libro)
